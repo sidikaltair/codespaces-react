@@ -1,0 +1,278 @@
+.rp-chat-widget {
+  --rp-chat-green: #244d3c;
+  --rp-chat-ink: #202a26;
+  --rp-chat-muted: #69736d;
+  --rp-chat-paper: #fbfaf7;
+  --rp-chat-line: #d9ded8;
+  position: fixed;
+  z-index: 1000;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  color: var(--rp-chat-ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.rp-chat-widget button,
+.rp-chat-widget input {
+  font: inherit;
+}
+
+.rp-chat-panel {
+  width: min(390px, calc(100vw - 32px));
+  height: min(600px, calc(100dvh - 110px));
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(32, 42, 38, .1);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 18px 55px rgba(24, 44, 34, .2);
+}
+
+.rp-chat-header {
+  min-height: 92px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #11152f;
+  color: white;
+}
+
+.rp-chat-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.rp-chat-brand > div {
+  display: grid;
+  gap: 5px;
+}
+
+.rp-chat-brand strong {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.rp-chat-brand span:not(.rp-chat-status) {
+  color: #d9dce8;
+  font-size: 11px;
+}
+
+.rp-chat-status {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: #8ec79c;
+}
+
+.rp-chat-close {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 25px !important;
+  line-height: 1;
+}
+
+.rp-chat-close:hover {
+  background: rgba(255, 255, 255, .12);
+}
+
+.rp-chat-messages {
+  flex: 1;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  background: var(--rp-chat-paper);
+}
+
+.rp-chat-message {
+  max-width: 88%;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rp-chat-message-assistant {
+  align-self: flex-start;
+  border: 1px solid #e7e8e2;
+  border-bottom-left-radius: 4px;
+  background: white;
+}
+
+.rp-chat-message-user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background: var(--rp-chat-green);
+  color: white;
+}
+
+.rp-chat-suggestions {
+  display: grid;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.rp-chat-suggestion {
+  width: fit-content;
+  max-width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #b9cabe;
+  border-radius: 18px;
+  background: white;
+  color: var(--rp-chat-green);
+  cursor: pointer;
+  font-size: 12px !important;
+  line-height: 1.4;
+  text-align: left;
+  transition: background .2s ease, color .2s ease;
+}
+
+.rp-chat-suggestion:hover:not(:disabled) {
+  background: var(--rp-chat-green);
+  color: white;
+}
+
+.rp-chat-widget button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+.rp-chat-typing,
+.rp-chat-error {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rp-chat-typing {
+  color: var(--rp-chat-muted);
+}
+
+.rp-chat-error {
+  padding: 9px 16px 0;
+  color: #a33a2d;
+}
+
+.rp-chat-compose {
+  min-height: 66px;
+  padding: 11px 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid var(--rp-chat-line);
+  background: white;
+}
+
+.rp-chat-compose input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid var(--rp-chat-line);
+  border-radius: 22px;
+  outline: none;
+  color: var(--rp-chat-ink);
+  font-size: 13px;
+}
+
+.rp-chat-compose input:focus {
+  border-color: var(--rp-chat-green);
+}
+
+.rp-chat-compose input::placeholder {
+  color: #89918c;
+}
+
+.rp-chat-compose button {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--rp-chat-green);
+  color: white;
+  cursor: pointer;
+}
+
+.rp-chat-compose button:disabled {
+  background: #a8b7ad;
+}
+
+.rp-chat-compose svg,
+.rp-chat-launcher svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.rp-chat-launcher {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #244d3c;
+  box-shadow: 0 7px 20px rgba(24, 44, 34, .25);
+  color: white;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.rp-chat-launcher:hover {
+  background: #183a2c;
+  transform: translateY(-2px);
+}
+
+.rp-chat-launcher span {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.rp-chat-launcher svg {
+  width: 25px;
+  height: 25px;
+}
+
+@media (max-width: 480px) {
+  .rp-chat-widget {
+    right: 12px;
+    bottom: 12px;
+    gap: 10px;
+  }
+
+  .rp-chat-panel {
+    width: calc(100vw - 24px);
+    height: min(620px, calc(100dvh - 92px));
+    min-height: 330px;
+  }
+
+  .rp-chat-launcher {
+    width: 56px;
+    height: 56px;
+  }
+}

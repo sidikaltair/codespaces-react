@@ -1,4 +1,6 @@
 import './App.css';
+import ChatWidget from './components/ChatWidget';
+import ReservationPage from './ReservationPage';
 
 const services = [
   {
@@ -23,7 +25,12 @@ const services = [
 
 function App() {
   return (
-    <main>
+    <>
+      {window.location.pathname === '/reservasi' ? (
+        <ReservationPage />
+      ) : (
+        <>
+      <main>
       <header className="site-header">
         <a className="wordmark" href="#beranda" aria-label="Ruang Pulih, beranda">
           ruang<span>pulih</span><i>.</i>
@@ -33,7 +40,7 @@ function App() {
           <a href="#pendekatan">Pendekatan</a>
           <a href="#cerita">Cerita pasien</a>
         </nav>
-        <a className="header-cta" href="#kontak">Jadwalkan sesi <span aria-hidden="true">↗</span></a>
+        <a className="header-cta" href="/reservasi">Jadwalkan sesi <span aria-hidden="true">↗</span></a>
       </header>
 
       <section className="hero" id="beranda">
@@ -44,7 +51,7 @@ function App() {
             Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu.
           </p>
           <div className="hero-actions">
-            <a className="button button-dark" href="#kontak">Mulai konsultasi <span aria-hidden="true">↗</span></a>
+            <a className="button button-dark" href="/reservasi">Mulai konsultasi <span aria-hidden="true">↗</span></a>
             <a className="text-link" href="#layanan">Lihat layanan <span aria-hidden="true">↓</span></a>
           </div>
           <div className="hero-proof">
@@ -86,7 +93,7 @@ function App() {
                 <h3>{service.title}</h3>
               </div>
               <p>{service.description}</p>
-              <a href="#kontak" aria-label={`Konsultasikan ${service.title}`} className="service-arrow">↗</a>
+              <a href="/reservasi" aria-label={`Konsultasikan ${service.title}`} className="service-arrow">↗</a>
             </article>
           ))}
         </div>
@@ -127,7 +134,7 @@ function App() {
         </div>
         <div className="contact-action">
           <p>Ceritakan apa yang kamu rasakan. Kami bantu cari tahu sesi yang paling sesuai.</p>
-          <a className="button button-light" href="mailto:halo@ruangpulih.id?subject=Konsultasi%20fisioterapi">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
+          <a className="button button-light" href="/reservasi">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
           <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Kemang, Jakarta Selatan</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
@@ -138,7 +145,11 @@ function App() {
         <p>Ruang untuk kembali menjadi dirimu.</p>
         <span>© 2025 Ruang Pulih Fisioterapi</span>
       </footer>
-    </main>
+      </main>
+        </>
+      )}
+      <ChatWidget />
+    </>
   );
 }
 
