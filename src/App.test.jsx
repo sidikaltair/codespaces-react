@@ -2,8 +2,8 @@ import { expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the physiotherapy landing page and consultation link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeDefined();
+  expect(screen.getByRole('heading', { name: /kembali bergerak/i })).toBeDefined();
+  expect(screen.getByRole('link', { name: /mulai konsultasi/i }).getAttribute('href')).toBe('#kontak');
 });
