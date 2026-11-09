@@ -94,10 +94,22 @@ h2 { margin: 15px 0 0; font-size: 49px; line-height: 1.08; }
 .approach-points strong { color: var(--ink); font-size: 12px; }
 
 .testimonial { position: relative; padding-top: 105px; padding-bottom: 105px; text-align: center; }
-.testimonial blockquote { position: relative; z-index: 1; max-width: 780px; margin: 23px auto 25px; font-size: 34px; line-height: 1.4; }
+.testimonial-content { position: relative; z-index: 1; }
+.testimonial blockquote { max-width: 780px; margin: 23px auto 25px; font-size: 34px; line-height: 1.4; }
 .quote-byline { display: flex; justify-content: center; align-items: center; gap: 12px; color: var(--muted); font-size: 10px; }
 .quote-byline strong { color: var(--ink); }
 .quote-line { width: 24px; height: 1px; background: var(--coral); }
+.quote-recommendation { max-width: 570px; margin: 20px auto 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.quote-recommendation > span { margin-right: 7px; color: var(--coral); }
+.quote-recommendation strong { margin-right: 4px; color: var(--green); }
+.testimonial-arrow { position: absolute; z-index: 2; top: 50%; width: 42px; height: 42px; display: grid; place-items: center; padding: 0; transform: translateY(-50%); border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--green); cursor: pointer; font-size: 17px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.testimonial-arrow:hover { border-color: var(--green); background: var(--green); color: white; }
+.testimonial-arrow:focus-visible, .testimonial-dot:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+.testimonial-arrow-previous { left: 4%; }
+.testimonial-arrow-next { right: 4%; }
+.testimonial-pagination { position: relative; z-index: 1; display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.testimonial-dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: #cbd4cd; cursor: pointer; transition: width .2s ease, background .2s ease; }
+.testimonial-dot.is-active { width: 21px; border-radius: 5px; background: var(--coral); }
 .quote-decoration { position: absolute; top: 85px; left: 50%; color: #f2e2d5; font-family: 'DM Serif Display', Georgia, serif; font-size: 210px; line-height: 1; transform: translateX(-50%); }
 
 .contact { position: relative; min-height: 300px; padding: 65px 11%; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 50px; overflow: hidden; background: var(--green); color: white; }
@@ -156,8 +168,13 @@ h2 { margin: 15px 0 0; font-size: 49px; line-height: 1.08; }
   .approach-copy { padding: 57px 7% 62px; }
   .approach-copy h2 { font-size: 39px; }
   .approach-description { font-size: 12px; }
-  .testimonial { padding-top: 76px; padding-bottom: 76px; }
+  .testimonial { padding: 76px 12% 76px; }
   .testimonial blockquote { font-size: 27px; }
+  .quote-recommendation { max-width: 330px; margin-top: 16px; }
+  .testimonial-arrow { width: 32px; height: 32px; font-size: 14px; }
+  .testimonial-arrow-previous { left: 3%; }
+  .testimonial-arrow-next { right: 3%; }
+  .testimonial-pagination { margin-top: 20px; }
   .quote-decoration { top: 58px; font-size: 155px; }
   .contact { padding: 55px 7%; grid-template-columns: 1fr; gap: 20px; }
   .contact h2 { font-size: 38px; }

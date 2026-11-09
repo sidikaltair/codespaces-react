@@ -1,6 +1,28 @@
+import { useState } from 'react';
 import './App.css';
 import ChatWidget from './components/ChatWidget';
 import ReservationPage from './ReservationPage';
+
+const testimonials = [
+  {
+    quote: 'Setelah lama takut olahraga lagi, akhirnya saya bisa lari pagi tanpa khawatir. Timnya sabar banget menjelaskan setiap langkah.',
+    name: 'Nadia P.',
+    service: 'Pasien rehabilitasi olahraga',
+    recommendation: 'Cocok untuk kamu yang ingin kembali aktif dengan langkah yang bertahap.',
+  },
+  {
+    quote: 'Saya jadi lebih paham penyebab pegal di punggung dan punya latihan sederhana yang bisa dilakukan di rumah. Sesi terapinya terasa nyaman.',
+    name: 'Dimas A.',
+    service: 'Pasien fisioterapi muskuloskeletal',
+    recommendation: 'Direkomendasikan untuk yang ingin memahami tubuh dan bergerak lebih nyaman.',
+  },
+  {
+    quote: 'Dari awal saya merasa didengarkan. Programnya disesuaikan dengan keseharian saya, jadi lebih mudah konsisten dan semangat bergerak.',
+    name: 'Sari M.',
+    service: 'Pasien terapi gerak & postur',
+    recommendation: 'Pilihan yang menyenangkan untuk memulai kebiasaan gerak yang lebih baik.',
+  },
+];
 
 const services = [
   {
@@ -24,9 +46,22 @@ const services = [
 ];
 
 function App() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const testimonial = testimonials[activeTestimonial];
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const isReservationRoute = currentPath === '/reservasi' || currentPath.startsWith('/reservasi/');
+
+  function showPreviousTestimonial() {
+    setActiveTestimonial((current) => (current - 1 + testimonials.length) % testimonials.length);
+  }
+
+  function showNextTestimonial() {
+    setActiveTestimonial((current) => (current + 1) % testimonials.length);
+  }
+
   return (
     <>
-      {window.location.pathname === '/reservasi' ? (
+      {isReservationRoute ? (
         <ReservationPage />
       ) : (
         <>
@@ -45,7 +80,7 @@ function App() {
 
       <section className="hero" id="beranda">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · JAKARTA</p>
+          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Kota Bandung, Jawa Barat</p>
           <h1>Kembali bergerak.<br /><em>Tanpa takut.</em></h1>
           <p className="hero-description">
             Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu.
@@ -122,8 +157,29 @@ function App() {
 
       <section className="testimonial section-wrap" id="cerita">
         <p className="eyebrow">CERITA DARI RUANG PULIH</p>
-        <blockquote>“Setelah lama takut olahraga lagi, akhirnya saya bisa lari pagi tanpa khawatir. Timnya sabar banget menjelaskan setiap langkah.”</blockquote>
-        <div className="quote-byline"><span className="quote-line" /><span><strong>Nadia P.</strong> · Pasien rehabilitasi olahraga</span></div>
+        <button className="testimonial-arrow testimonial-arrow-previous" type="button" onClick={showPreviousTestimonial} aria-label="Testimoni sebelumnya">
+          <span aria-hidden="true">←</span>
+        </button>
+        <div className="testimonial-content" aria-live="polite" aria-atomic="true">
+          <blockquote>“{testimonial.quote}”</blockquote>
+          <div className="quote-byline"><span className="quote-line" /><span><strong>{testimonial.name}</strong> · {testimonial.service}</span></div>
+          <p className="quote-recommendation"><span aria-hidden="true">✳</span><strong>Rekomendasi:</strong> {testimonial.recommendation}</p>
+        </div>
+        <button className="testimonial-arrow testimonial-arrow-next" type="button" onClick={showNextTestimonial} aria-label="Testimoni berikutnya">
+          <span aria-hidden="true">→</span>
+        </button>
+        <div className="testimonial-pagination" aria-label={`Testimoni ${activeTestimonial + 1} dari ${testimonials.length}`}>
+          {testimonials.map((item, index) => (
+            <button
+              key={item.name}
+              type="button"
+              className={index === activeTestimonial ? 'testimonial-dot is-active' : 'testimonial-dot'}
+              onClick={() => setActiveTestimonial(index)}
+              aria-label={`Lihat testimoni ${index + 1}`}
+              aria-current={index === activeTestimonial ? 'true' : undefined}
+            />
+          ))}
+        </div>
         <span className="quote-decoration" aria-hidden="true">“</span>
       </section>
 
@@ -135,7 +191,7 @@ function App() {
         <div className="contact-action">
           <p>Ceritakan apa yang kamu rasakan. Kami bantu cari tahu sesi yang paling sesuai.</p>
           <a className="button button-light" href="/reservasi">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
-          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Kemang, Jakarta Selatan</span>
+          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Bandung, Jawa Barat</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
       </section>
