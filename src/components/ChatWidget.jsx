@@ -47,7 +47,7 @@ function ChatWidget() {
       setSessionId(getSessionId());
       setMessages([{
         role: 'assistant',
-        content: 'Halo! Selamat datang di Ruang Pulih. Ada yang bisa kami bantu?',
+        content: 'Halo! Selamat datang di Pulih di rumah. Ada yang bisa kami bantu?',
       }]);
     }
   }, [isOpen, sessionId]);
@@ -92,7 +92,7 @@ function ChatWidget() {
 
       setMessages((currentMessages) => [...currentMessages, { role: 'assistant', content: reply }]);
     } catch {
-      setError('Pesan belum terkirim. Silakan coba lagi atau hubungi kami melalui formulir reservasi.');
+      setError('Pesan belum terkirim. Silakan coba lagi atau hubungi kami melalui WhatsApp.');
     } finally {
       setIsSending(false);
     }
@@ -106,7 +106,7 @@ function ChatWidget() {
   return (
     <div className="rp-chat-widget">
       {isOpen && (
-        <section className="rp-chat-panel" aria-label="Chat Ruang Pulih">
+        <section className="rp-chat-panel" aria-label="Chat Pulih di rumah">
           <header className="rp-chat-header">
             <div className="rp-chat-brand">
               <span className="rp-chat-status" aria-hidden="true" />

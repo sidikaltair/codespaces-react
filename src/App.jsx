@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import ChatWidget from './components/ChatWidget';
-import ReservationPage from './ReservationPage';
 
 const testimonials = [
   {
@@ -45,11 +44,59 @@ const services = [
   },
 ];
 
+const painFactors = [
+  {
+    number: '01',
+    title: 'Beban yang berubah',
+    description: 'Aktivitas yang meningkat mendadak, gerakan berulang, atau waktu istirahat yang kurang dapat membuat tubuh kesulitan beradaptasi.',
+  },
+  {
+    number: '02',
+    title: 'Riwayat cedera atau operasi',
+    description: 'Setelah cedera, tubuh bisa mengubah cara bergerak. Kekuatan, kelenturan, dan kepercayaan diri mungkin perlu dibangun kembali secara bertahap.',
+  },
+  {
+    number: '03',
+    title: 'Kapasitas gerak belum pulih',
+    description: 'Kekakuan, kelemahan, atau keterbatasan gerak dapat memengaruhi aktivitas. Penyebab dan latihan yang sesuai berbeda untuk setiap orang.',
+  },
+  {
+    number: '04',
+    title: 'Banyak faktor saling terkait',
+    description: 'Kualitas tidur, stres, kondisi kesehatan, serta tuntutan pekerjaan juga dapat memengaruhi pengalaman nyeri dan proses pemulihan.',
+  },
+];
+
+const visitSteps = [
+  {
+    number: '01',
+    title: 'Ceritakan keluhanmu',
+    description: 'Kapan mulai terasa, apa yang memperberat atau meringankan, serta aktivitas apa yang ingin kamu lakukan kembali.',
+  },
+  {
+    number: '02',
+    title: 'Pemeriksaan gerak',
+    description: 'Fisioterapis menilai gerak, kekuatan, dan fungsi sesuai keluhanmu, lalu menjelaskan temuan dengan bahasa yang mudah dipahami.',
+  },
+  {
+    number: '03',
+    title: 'Susun rencana bersama',
+    description: 'Latihan dan pendampingan disesuaikan dengan kondisi, tujuan, serta kemampuanmu. Kamu bisa bertanya dan menyampaikan kekhawatiran.',
+  },
+  {
+    number: '04',
+    title: 'Pantau dan sesuaikan',
+    description: 'Kemajuan ditinjau bersama. Program dapat diubah berdasarkan respons tubuh dan aktivitas sehari-hari.',
+  },
+];
+
+const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '6289512728697').replace(/\D/g, '');
+const whatsappUrl = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+const firstSessionWhatsappUrl = whatsappUrl('Halo Pulih di rumah, saya ingin mengatur sesi pertama.');
+
 function App() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonial = testimonials[activeTestimonial];
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
-  const isReservationRoute = currentPath === '/reservasi' || currentPath.startsWith('/reservasi/');
 
   function showPreviousTestimonial() {
     setActiveTestimonial((current) => (current - 1 + testimonials.length) % testimonials.length);
@@ -61,21 +108,18 @@ function App() {
 
   return (
     <>
-      {isReservationRoute ? (
-        <ReservationPage />
-      ) : (
-        <>
       <main>
       <header className="site-header">
-        <a className="wordmark" href="#beranda" aria-label="Ruang Pulih, beranda">
-          ruang<span>pulih</span><i>.</i>
+        <a className="wordmark" href="#beranda" aria-label="Pulih di rumah, beranda">
+          Pulih <span>di rumah</span><i>.</i>
         </a>
         <nav className="main-nav" aria-label="Navigasi utama">
+          <a href="#nyeri">Tentang nyeri</a>
           <a href="#layanan">Layanan</a>
           <a href="#pendekatan">Pendekatan</a>
-          <a href="#cerita">Cerita pasien</a>
+          <a href="#pertanyaan">FAQ</a>
         </nav>
-        <a className="header-cta" href="/reservasi">Jadwalkan sesi <span aria-hidden="true">↗</span></a>
+        <a className="header-cta" href={whatsappUrl('Halo Pulih di rumah, saya ingin menjadwalkan sesi.')} target="_blank" rel="noreferrer">Jadwalkan sesi <span aria-hidden="true">↗</span></a>
       </header>
 
       <section className="hero" id="beranda">
@@ -83,10 +127,10 @@ function App() {
           <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Kota Bandung, Jawa Barat</p>
           <h1>Kembali bergerak.<br /><em>Tanpa takut.</em></h1>
           <p className="hero-description">
-            Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu.
+            Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu. Tunggu kami datang ke rumahmu, atau datang ke klinik untuk sesi tatap muka
           </p>
           <div className="hero-actions">
-            <a className="button button-dark" href="/reservasi">Mulai konsultasi <span aria-hidden="true">↗</span></a>
+            <a className="button button-dark" href={whatsappUrl('Halo Pulih di rumah, saya ingin memulai konsultasi.')} target="_blank" rel="noreferrer">Mulai konsultasi <span aria-hidden="true">↗</span></a>
             <a className="text-link" href="#layanan">Lihat layanan <span aria-hidden="true">↓</span></a>
           </div>
           <div className="hero-proof">
@@ -128,10 +172,31 @@ function App() {
                 <h3>{service.title}</h3>
               </div>
               <p>{service.description}</p>
-              <a href="/reservasi" aria-label={`Konsultasikan ${service.title}`} className="service-arrow">↗</a>
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="pain-education section-wrap" id="nyeri">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">MEMAHAMI NYERI BERKEPANJANGAN</p>
+            <h2>Nyeri yang menetap<br /><em>layak diperiksa.</em></h2>
+          </div>
+          <p className="section-intro">Nyeri yang berlangsung atau berulang selama berbulan-bulan sering disebut nyeri persisten. Nyeri adalah pengalaman yang nyata, tetapi tidak selalu berarti ada kerusakan yang terus memburuk.</p>
+        </div>
+        <div className="pain-factor-grid">
+          {painFactors.map((factor) => (
+            <article className="pain-factor-card" key={factor.number}>
+              <span>{factor.number}</span>
+              <h3>{factor.title}</h3>
+              <p>{factor.description}</p>
+            </article>
+          ))}
+        </div>
+        <p className="education-note">
+          <strong>Perlu diingat:</strong> ini adalah informasi umum, bukan diagnosis. Nyeri baru, berat, terus memburuk, atau mengganggu tidur dan kegiatan sehari-hari sebaiknya dinilai oleh tenaga kesehatan.
+        </p>
       </section>
 
       <section className="approach" id="pendekatan">
@@ -155,8 +220,63 @@ function App() {
         </div>
       </section>
 
+      <section className="visit-process section-wrap" id="proses">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">APA YANG TERJADI SAAT FISIOTERAPI?</p>
+            <h2>Langkahnya jelas,<br /><em>kamu tetap terlibat.</em></h2>
+          </div>
+          <p className="section-intro">Fisioterapi bukan sekadar diberi latihan. Kamu dan fisioterapis bekerja sama memahami masalah gerak dan memilih langkah yang sesuai.</p>
+        </div>
+        <div className="visit-step-grid">
+          {visitSteps.map((step) => (
+            <article className="visit-step" key={step.number}>
+              <span>{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="safety-note">
+          <span className="safety-mark" aria-hidden="true">!</span>
+          <p><strong>Cari pertolongan medis segera</strong> jika nyeri disertai sesak atau nyeri dada, kelemahan mendadak, hilangnya kendali buang air kecil/besar, demam tinggi, atau terjadi setelah cedera berat. Untuk keadaan darurat, hubungi layanan darurat setempat.</p>
+        </div>
+      </section>
+
+      <section className="faq-section section-wrap" id="pertanyaan">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">PERTANYAAN YANG SERING MUNCUL</p>
+            <h2>Masih ada yang<br /><em>ingin ditanyakan?</em></h2>
+          </div>
+          <p className="section-intro">Setiap kondisi berbeda. Jawaban berikut membantu memberi gambaran awal—fisioterapis akan menilai kebutuhanmu secara individual.</p>
+        </div>
+        <div className="faq-list">
+          <details>
+            <summary>Apakah nyeri harus hilang dulu sebelum mulai fisioterapi?</summary>
+            <p>Tidak selalu. Setelah pemeriksaan, fisioterapis dapat membantu menentukan aktivitas dan latihan yang aman untuk kondisimu. Sampaikan jika suatu gerakan membuat gejala memburuk.</p>
+          </details>
+          <details>
+            <summary>Apakah fisioterapi hanya untuk cedera olahraga?</summary>
+            <p>Tidak. Fisioterapi juga dapat membantu mengevaluasi dan menangani masalah gerak seperti nyeri punggung atau leher, kekakuan sendi, pemulihan setelah operasi, dan keterbatasan aktivitas—sesuai hasil pemeriksaan dan kompetensi layanan.</p>
+          </details>
+          <details>
+            <summary>Berapa kali saya perlu menjalani sesi?</summary>
+            <p>Jumlah sesi bergantung pada kondisi, tujuan, respons tubuh, dan rencana yang disepakati. Setelah evaluasi, tanyakan perkiraan program dan kapan kemajuan akan ditinjau kembali.</p>
+          </details>
+          <details>
+            <summary>Apakah saya perlu membawa hasil rontgen atau MRI?</summary>
+            <p>Jika sudah memiliki hasil pemeriksaan atau surat rujukan, siapkan untuk dibahas. Pemeriksaan pencitraan tidak selalu diperlukan; kebutuhan pemeriksaan lanjutan ditentukan tenaga kesehatan berdasarkan kondisi.</p>
+          </details>
+          <details>
+            <summary>Apa yang perlu disiapkan untuk sesi pertama?</summary>
+            <p>Kenakan pakaian yang nyaman untuk bergerak. Catat kapan keluhan muncul, aktivitas yang terpengaruh, obat atau pemeriksaan yang relevan, dan tujuan yang ingin kamu capai.</p>
+          </details>
+        </div>
+      </section>
+
       <section className="testimonial section-wrap" id="cerita">
-        <p className="eyebrow">CERITA DARI RUANG PULIH</p>
+        <p className="eyebrow">CERITA DARI PULIH DI RUMAH</p>
         <button className="testimonial-arrow testimonial-arrow-previous" type="button" onClick={showPreviousTestimonial} aria-label="Testimoni sebelumnya">
           <span aria-hidden="true">←</span>
         </button>
@@ -190,20 +310,18 @@ function App() {
         </div>
         <div className="contact-action">
           <p>Ceritakan apa yang kamu rasakan. Kami bantu cari tahu sesi yang paling sesuai.</p>
-          <a className="button button-light" href="/reservasi">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
+          <a className="button button-light" href={firstSessionWhatsappUrl} target="_blank" rel="noreferrer">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
           <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Bandung, Jawa Barat</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
       </section>
 
       <footer className="site-footer">
-        <a className="wordmark" href="#beranda">ruang<span>pulih</span><i>.</i></a>
+        <a className="wordmark" href="#beranda">Pulih <span>di rumah</span><i>.</i></a>
         <p>Ruang untuk kembali menjadi dirimu.</p>
-        <span>© 2025 Ruang Pulih Fisioterapi</span>
+        <span>© 2025 Pulih di rumah Fisioterapi</span>
       </footer>
       </main>
-        </>
-      )}
       <ChatWidget />
     </>
   );

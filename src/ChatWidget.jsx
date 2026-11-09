@@ -23,8 +23,8 @@ function ChatWidget() {
     {
       role: 'assistant',
       content: webhookUrl
-        ? 'Halo, saya asisten Ruang Pulih. Ada yang ingin kamu tanyakan?'
-        : 'Chat belum tersambung. Silakan gunakan formulir reservasi atau hubungi klinik.',
+        ? 'Halo, saya asisten Pulih di rumah. Ada yang ingin kamu tanyakan?'
+        : 'Chat belum tersambung. Silakan hubungi kami melalui WhatsApp.',
     },
   ]);
 
@@ -71,9 +71,9 @@ function ChatWidget() {
   return (
     <div className="chat-widget">
       {isOpen && (
-        <section className="chat-panel" aria-label="Chat Ruang Pulih">
+        <section className="chat-panel" aria-label="Chat Pulih di rumah">
           <header className="chat-header">
-            <div><span className="chat-status-dot" /><div><strong>Ruang Pulih</strong><span>Asisten reservasi</span></div></div>
+            <div><span className="chat-status-dot" /><div><strong>Pulih di rumah</strong><span>Asisten reservasi</span></div></div>
             <button className="chat-close" type="button" aria-label="Tutup chat" onClick={() => setIsOpen(false)}>×</button>
           </header>
           <div className="chat-messages" aria-live="polite">

@@ -17,7 +17,7 @@ test('opens the chat with suggested topics and sends a selected topic to n8n', a
 
   fireEvent.click(screen.getByRole('button', { name: 'Buka chat' }));
 
-  expect(await screen.findByText('Halo! Selamat datang di Ruang Pulih. Ada yang bisa kami bantu?')).toBeDefined();
+  expect(await screen.findByText('Halo! Selamat datang di Pulih di rumah. Ada yang bisa kami bantu?')).toBeDefined();
   expect(screen.getByRole('button', { name: 'Saya ingin membuat reservasi' })).toBeDefined();
   expect(screen.getByRole('textbox', { name: 'Tulis pesan' })).toBeDefined();
 
