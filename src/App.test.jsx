@@ -7,7 +7,7 @@ test('renders the physiotherapy landing page and consultation link', () => {
   expect(screen.getByRole('heading', { name: /kembali bergerak/i })).toBeDefined();
   const consultationLink = screen.getByRole('link', { name: /mulai konsultasi/i });
   const consultationUrl = new URL(consultationLink.getAttribute('href'));
-  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '6289512728697').replace(/\D/g, '');
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '6285697237655').replace(/\D/g, '');
   expect(consultationUrl.origin + consultationUrl.pathname).toBe(`https://wa.me/${whatsappNumber}`);
   expect(consultationUrl.searchParams.get('text')).toBe('Halo Pulih di rumah, saya ingin memulai konsultasi.');
   const firstSessionLink = screen.getByRole('link', { name: /atur sesi pertamamu/i });
