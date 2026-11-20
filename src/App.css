@@ -68,7 +68,7 @@ h1 em, h2 em { color: #557b67; font-weight: 400; }
 
 .trust-strip { min-height: 65px; padding: 0 8%; display: flex; align-items: center; justify-content: space-between; gap: 14px; background: var(--green); color: #e8f0e9; font-size: 9px; font-weight: 600; letter-spacing: .8px; }
 .trust-strip i { width: 5px; height: 5px; border-radius: 50%; background: #ef9a7d; }
-.location-band { padding: 54px 11%; display: grid; grid-template-columns: .9fr 1.4fr; gap: 50px; align-items: start; background: var(--green); color: white; }
+.location-band { padding: 54px 11%; display: grid; grid-template-columns: .9fr 1.4fr; gap: 50px; align-items: start; border-top: 1px solid rgba(255, 255, 255, .18); background: var(--green); color: white; }
 .location-band .eyebrow { color: #c7dfcf; }
 .location-band h2 { margin-top: 12px; font-size: 38px; }
 .location-details { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }

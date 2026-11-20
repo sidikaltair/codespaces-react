@@ -92,6 +92,15 @@ const visitSteps = [
 
 const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '6285697237655').replace(/\D/g, '');
 const whatsappUrl = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+// Foto lokal di public/; kalau file belum ada di repo, tampilkan foto cadangan.
+const useFallbackImage = (event, fallbackSrc) => {
+  const img = event.currentTarget;
+  if (!img.dataset.fallbackApplied) {
+    img.dataset.fallbackApplied = '1';
+    img.src = fallbackSrc;
+  }
+};
 const firstSessionWhatsappUrl = whatsappUrl('Halo Pulih di rumah, saya ingin mengatur sesi pertama.');
 
 function App() {
@@ -141,7 +150,8 @@ function App() {
         </div>
         <div className="hero-visual">
           <img
-            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=85"
+            src="/hero-latihan.jpg"
+            onError={(event) => useFallbackImage(event, 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=85')}
             alt="Sesi latihan gerak dengan pendampingan profesional"
           />
           <div className="image-caption"><span>01 / 03</span><span>Gerak adalah bagian dari pulih.</span></div>
@@ -155,25 +165,6 @@ function App() {
         <span>LANGKAH KECIL, PROGRES NYATA</span><i />
         <span>TERAPI BERBASIS BUKTI</span>
       </div>
-
-      <section className="location-band" id="lokasi" aria-label="Lokasi klinik">
-        <div>
-          <p className="eyebrow">LOKASI KLINIK</p>
-          <h2>Kunjungi kami di Majalaya</h2>
-        </div>
-        <div className="location-details">
-          <div>
-            <span className="location-label">Alamat</span>
-            <p>XQ4F+G85, Kp. Buahjajar, RT.01/RW.10, Bojong, Kec. Majalaya, Kabupaten Bandung, Jawa Barat 40383</p>
-            <a className="text-link" href="https://share.google/k92sn5oHqr8q1tgB1" target="_blank" rel="noreferrer">Lihat di Google Maps <span aria-hidden="true">↗</span></a>
-          </div>
-          <div>
-            <span className="location-label">Telepon</span>
-            <p><a href="tel:+62895344136068">0895-3441-36068</a></p>
-            <span className="location-note">Senin–Sabtu, 08.00–19.00</span>
-          </div>
-        </div>
-      </section>
 
       <section className="services section-wrap" id="layanan">
         <div className="section-heading">
@@ -258,8 +249,9 @@ function App() {
       <section className="approach" id="pendekatan">
         <div className="approach-image">
           <img
-            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1100&q=85"
-            alt="Latihan peregangan untuk membantu tubuh bergerak lebih leluasa"
+            src="/perawatan-rumah.jpg"
+            onError={(event) => useFallbackImage(event, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1100&q=85')}
+            alt="Fisioterapis mendampingi pasien lanjut usia di rumah"
             loading="lazy"
           />
           <span className="photo-index">RUANG GERAK 02 — 03</span>
@@ -374,6 +366,25 @@ function App() {
           <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Majalaya, Kabupaten Bandung</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
+      </section>
+
+      <section className="location-band" id="lokasi" aria-label="Lokasi klinik">
+        <div>
+          <p className="eyebrow">LOKASI KLINIK</p>
+          <h2>Kunjungi kami di Majalaya</h2>
+        </div>
+        <div className="location-details">
+          <div>
+            <span className="location-label">Alamat</span>
+            <p>XQ4F+G85, Kp. Buahjajar, RT.01/RW.10, Bojong, Kec. Majalaya, Kabupaten Bandung, Jawa Barat 40383</p>
+            <a className="text-link" href="https://share.google/k92sn5oHqr8q1tgB1" target="_blank" rel="noreferrer">Lihat di Google Maps <span aria-hidden="true">↗</span></a>
+          </div>
+          <div>
+            <span className="location-label">Telepon</span>
+            <p><a href="tel:+62895344136068">0895-3441-36068</a></p>
+            <span className="location-note">Senin–Sabtu, 08.00–19.00</span>
+          </div>
+        </div>
       </section>
 
       <footer className="site-footer">
