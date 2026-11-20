@@ -134,7 +134,7 @@ function App() {
 
       <section className="hero" id="beranda">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Majalaya, Kabupaten Bandung</p>
+          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Bandung, Jawa Barat</p>
           <h1>Kembali bergerak.<br /><em>Tanpa takut.</em></h1>
           <p className="hero-description">
             Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu. Tunggu kami datang ke rumahmu, atau datang ke klinik untuk sesi tatap muka
@@ -220,7 +220,7 @@ function App() {
         </div>
         <div className="homecare-actions">
           <a className="button button-dark" href={whatsappUrl('Halo Pulih di rumah, saya ingin mengatur home visit fisioterapi.')} target="_blank" rel="noreferrer">Atur home visit <span aria-hidden="true">↗</span></a>
-          <span className="homecare-note">Area layanan: Majalaya dan sekitarnya, Kabupaten Bandung</span>
+          <span className="homecare-note">Area layanan: Bandung dan sekitarnya</span>
         </div>
       </section>
 
@@ -249,7 +249,7 @@ function App() {
       <section className="approach" id="pendekatan">
         <div className="approach-image">
           <img
-            src="/perawatan-rumah.jpg"
+            src="/gambar2.jpeg"
             onError={(event) => useFallbackImage(event, 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1100&q=85')}
             alt="Fisioterapis mendampingi pasien lanjut usia di rumah"
             loading="lazy"
@@ -363,34 +363,30 @@ function App() {
         <div className="contact-action">
           <p>Ceritakan apa yang kamu rasakan. Kami bantu cari tahu sesi yang paling sesuai.</p>
           <a className="button button-light" href={firstSessionWhatsappUrl} target="_blank" rel="noreferrer">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
-          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Majalaya, Kabupaten Bandung</span>
+          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Bandung, Jawa Barat</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
       </section>
 
-      <section className="location-band" id="lokasi" aria-label="Lokasi klinik">
-        <div>
+      <footer className="site-footer" id="lokasi">
+        <div className="footer-brand">
+          <a className="wordmark" href="#beranda">Pulih <span>di rumah</span><i>.</i></a>
+          <p>Ruang untuk kembali menjadi dirimu.</p>
+        </div>
+        <div className="footer-location">
           <p className="eyebrow">LOKASI KLINIK</p>
-          <h2>Kunjungi kami di Majalaya</h2>
+          <h2>Kunjungi kami di Bandung</h2>
+          <p>Untuk terapi langsung, datang ke alamat berikut ini:</p>
+          <p>XQ4F+G85, Kp. Buahjajar, RT.01/RW.10, Bojong, Kec. Majalaya, Kabupaten Bandung, Jawa Barat 40383</p>
+          <a className="text-link" href="https://share.google/k92sn5oHqr8q1tgB1" target="_blank" rel="noreferrer">Lihat di Google Maps <span aria-hidden="true">↗</span></a>
         </div>
-        <div className="location-details">
-          <div>
-            <span className="location-label">Alamat</span>
-            <p>XQ4F+G85, Kp. Buahjajar, RT.01/RW.10, Bojong, Kec. Majalaya, Kabupaten Bandung, Jawa Barat 40383</p>
-            <a className="text-link" href="https://share.google/k92sn5oHqr8q1tgB1" target="_blank" rel="noreferrer">Lihat di Google Maps <span aria-hidden="true">↗</span></a>
-          </div>
-          <div>
-            <span className="location-label">Telepon</span>
-            <p><a href="tel:+62895344136068">0895-3441-36068</a></p>
-            <span className="location-note">Senin–Sabtu, 08.00–19.00</span>
-          </div>
+        <div className="footer-contact">
+          <span className="location-label">Telepon</span>
+          <p><a href="tel:+62895344136068">0895-3441-36068</a></p>
+          <span className="location-note">Senin–Sabtu, 08.00–19.00</span>
+          <a className="button button-light footer-cta" href={whatsappUrl('Halo Pulih di rumah, saya ingin menjadwalkan sesi.')} target="_blank" rel="noreferrer">Jadwalkan kunjungan <span aria-hidden="true">↗</span></a>
         </div>
-      </section>
-
-      <footer className="site-footer">
-        <a className="wordmark" href="#beranda">Pulih <span>di rumah</span><i>.</i></a>
-        <p>Ruang untuk kembali menjadi dirimu.</p>
-        <span>© 2025 Pulih di rumah Fisioterapi</span>
+        <span className="footer-copy">© 2025 Pulih di rumah Fisioterapi</span>
       </footer>
       </main>
       <ChatWidget />
