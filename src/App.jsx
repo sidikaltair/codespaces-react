@@ -90,7 +90,7 @@ const visitSteps = [
   },
 ];
 
-const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '62895344136068').replace(/\D/g, '');
+const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '6285697237655').replace(/\D/g, '');
 const whatsappUrl = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 const firstSessionWhatsappUrl = whatsappUrl('Halo Pulih di rumah, saya ingin mengatur sesi pertama.');
 
