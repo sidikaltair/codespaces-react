@@ -116,6 +116,7 @@ function App() {
         <nav className="main-nav" aria-label="Navigasi utama">
           <a href="#nyeri">Tentang nyeri</a>
           <a href="#layanan">Layanan</a>
+          <a href="#homecare">Pulih di Rumah</a>
           <a href="#pendekatan">Pendekatan</a>
           <a href="#pertanyaan">FAQ</a>
         </nav>
@@ -124,7 +125,7 @@ function App() {
 
       <section className="hero" id="beranda">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Kota Bandung, Jawa Barat</p>
+          <p className="eyebrow"><span className="eyebrow-dot" /> KLINIK FISIOTERAPI · Majalaya, Kabupaten Bandung</p>
           <h1>Kembali bergerak.<br /><em>Tanpa takut.</em></h1>
           <p className="hero-description">
             Tubuhmu punya cerita. Kami mendengarkan, memahami, lalu menyusun jalan pulih yang terasa pas untukmu. Tunggu kami datang ke rumahmu, atau datang ke klinik untuk sesi tatap muka
@@ -155,6 +156,25 @@ function App() {
         <span>TERAPI BERBASIS BUKTI</span>
       </div>
 
+      <section className="location-band" id="lokasi" aria-label="Lokasi klinik">
+        <div>
+          <p className="eyebrow">LOKASI KLINIK</p>
+          <h2>Kunjungi kami di Majalaya</h2>
+        </div>
+        <div className="location-details">
+          <div>
+            <span className="location-label">Alamat</span>
+            <p>XQ4F+G85, Kp. Buahjajar, RT.01/RW.10, Bojong, Kec. Majalaya, Kabupaten Bandung, Jawa Barat 40383</p>
+            <a className="text-link" href="https://share.google/k92sn5oHqr8q1tgB1" target="_blank" rel="noreferrer">Lihat di Google Maps <span aria-hidden="true">↗</span></a>
+          </div>
+          <div>
+            <span className="location-label">Telepon</span>
+            <p><a href="tel:+62895344136068">0895-3441-36068</a></p>
+            <span className="location-note">Senin–Sabtu, 08.00–19.00</span>
+          </div>
+        </div>
+      </section>
+
       <section className="services section-wrap" id="layanan">
         <div className="section-heading">
           <div>
@@ -174,6 +194,42 @@ function App() {
               <p>{service.description}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="homecare section-wrap" id="homecare">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">FISIOTERAPI PANGGILAN BANDUNG</p>
+            <h2>Terapis datang,<br /><em>pulih dari rumah.</em></h2>
+          </div>
+          <p className="section-intro">Layanan fisioterapi home care Bandung — fisioterapis datang ke rumahmu di seluruh Kota Bandung. Cocok untuk yang sulit bepergian, pemulihan pascaoperasi, atau lansia.</p>
+        </div>
+        <div className="visit-step-grid">
+          <article className="visit-step">
+            <span>01</span>
+            <h3>Chat WhatsApp dulu</h3>
+            <p>Ceritakan keluhanmu dan alamat rumahmu. Kami bantu cek jadwal terapis terdekat.</p>
+          </article>
+          <article className="visit-step">
+            <span>02</span>
+            <h3>Atur jadwal kunjungan</h3>
+            <p>Pilih hari dan jam yang pas — Senin–Sabtu, 08.00–19.00.</p>
+          </article>
+          <article className="visit-step">
+            <span>03</span>
+            <h3>Terapis datang ke rumah</h3>
+            <p>Pemeriksaan gerak dan terapi dilakukan di rumahmu, dengan peralatan yang dibawa terapis.</p>
+          </article>
+          <article className="visit-step">
+            <span>04</span>
+            <h3>Latihan lanjutan di rumah</h3>
+            <p>Kamu dapat program latihan sederhana yang bisa dilakukan sendiri sampai sesi berikutnya.</p>
+          </article>
+        </div>
+        <div className="homecare-actions">
+          <a className="button button-dark" href={whatsappUrl('Halo Pulih di rumah, saya ingin mengatur home visit fisioterapi.')} target="_blank" rel="noreferrer">Atur home visit <span aria-hidden="true">↗</span></a>
+          <span className="homecare-note">Area layanan: Majalaya dan sekitarnya, Kabupaten Bandung</span>
         </div>
       </section>
 
@@ -269,6 +325,10 @@ function App() {
             <p>Jika sudah memiliki hasil pemeriksaan atau surat rujukan, siapkan untuk dibahas. Pemeriksaan pencitraan tidak selalu diperlukan; kebutuhan pemeriksaan lanjutan ditentukan tenaga kesehatan berdasarkan kondisi.</p>
           </details>
           <details>
+            <summary>Apakah ada layanan fisioterapi home visit di Bandung?</summary>
+            <p>Ada. Layanan Pulih di Rumah adalah fisioterapi panggilan Bandung — terapis datang ke rumahmu di seluruh Kota Bandung, Senin–Sabtu 08.00–19.00. Atur jadwal lewat WhatsApp dan siapkan ruang yang cukup untuk bergerak.</p>
+          </details>
+          <details>
             <summary>Apa yang perlu disiapkan untuk sesi pertama?</summary>
             <p>Kenakan pakaian yang nyaman untuk bergerak. Catat kapan keluhan muncul, aktivitas yang terpengaruh, obat atau pemeriksaan yang relevan, dan tujuan yang ingin kamu capai.</p>
           </details>
@@ -311,7 +371,7 @@ function App() {
         <div className="contact-action">
           <p>Ceritakan apa yang kamu rasakan. Kami bantu cari tahu sesi yang paling sesuai.</p>
           <a className="button button-light" href={firstSessionWhatsappUrl} target="_blank" rel="noreferrer">Atur sesi pertamamu <span aria-hidden="true">↗</span></a>
-          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Bandung, Jawa Barat</span>
+          <span className="contact-hours">Senin–Sabtu, 08.00–19.00 · Majalaya, Kabupaten Bandung</span>
         </div>
         <span className="contact-spark" aria-hidden="true">✳</span>
       </section>
